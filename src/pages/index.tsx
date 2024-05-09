@@ -1,4 +1,5 @@
 import LoginPage from "./login";
 import HomePage from "./home";
 import ErrorPage from "./error";
-export { LoginPage, HomePage, ErrorPage };
+import RegisterPage from "./register";
+export { LoginPage, HomePage, ErrorPage, RegisterPage };

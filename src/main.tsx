@@ -4,8 +4,9 @@ import '@/styles/index.css'
 import { Provider } from 'react-redux'
 import { store } from './lib/redux/store'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { LoginPage, HomePage, ErrorPage } from '@/pages';
+import { LoginPage, HomePage, ErrorPage, RegisterPage } from '@/pages';
 import MainLayout from './layouts/MainLayout'
+import LoginLayout from './layouts/LoginLayout'
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <LoginLayout>
+        <LoginPage />
+      </LoginLayout>
+    ),
+  },
+  {
+    path: '/register',
+    element: (
+      <LoginLayout>
+        <RegisterPage />
+      </LoginLayout>
+    ),
   },
 ]);
 
