@@ -12,7 +12,7 @@ export const handleApiError = (error: any) => {
 
 export const get = async (id: string) => {
   try {
-    const { data } = await axiosClient.get(`/api/`);
+    const { data } = await axiosClient.get(`/api/${id}`);
     return { error: null, data: data, success: true };
   } catch (error) {
     return handleApiError(error);
