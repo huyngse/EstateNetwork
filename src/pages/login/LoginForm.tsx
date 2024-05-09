@@ -1,24 +1,43 @@
+import { login } from '@/lib/api/authen-api';
 import { LockFilled, UserOutlined } from '@ant-design/icons'
 import { Button, Form, Input } from 'antd'
 import { FormProps } from "antd";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 type FieldType = {
-    username?: string;
+    email?: string;
     password?: string;
     // remember?: string;
 };
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
-};
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
+
 
 type LoginFormProps = {
     setIsResetingPassword: (value: boolean) => void;
 }
 
 const LoginForm = ({ setIsResetingPassword }: LoginFormProps) => {
+    const navigate = useNavigate();
+    const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+        console.log(values);
+        if (values.email != null && values.password != null) {
+            const { data } = await login(values.email, values.password);
+            if (data.success) {
+                toast.success("Đăng nhập thành công!");
+                setTimeout(
+                    () => {
+                        navigate("/");
+                    }, 1000
+                );
+            } else {
+                toast.error("Đăng nhập thất bại! Sai email hoặc mật khẩu",);
+            }
+        }
+    };
+    const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
     return (
         <Form
             name="basic"
@@ -33,7 +52,7 @@ const LoginForm = ({ setIsResetingPassword }: LoginFormProps) => {
                     name="email"
                     rules={[
                         { required: true, message: 'Vui lòng nhập email của bạn!' },
-                        {type: 'email', message: 'Email không hợp lệ!'}
+                        { type: 'email', message: 'Email không hợp lệ!' }
                     ]}
                     style={{ margin: 0 }}
                 >

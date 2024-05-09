@@ -7,7 +7,8 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { LoginPage, HomePage, ErrorPage, RegisterPage } from '@/pages';
 import MainLayout from './layouts/MainLayout'
 import LoginLayout from './layouts/LoginLayout'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer autoClose={3000}/>
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,
