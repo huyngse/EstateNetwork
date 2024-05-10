@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-
+import PropertyReducer from "./propertySlice";
 const rootReducer = combineReducers({
+    property: PropertyReducer
 });
 
 

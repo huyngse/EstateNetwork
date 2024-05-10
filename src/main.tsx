@@ -9,6 +9,7 @@ import MainLayout from './layouts/MainLayout'
 import LoginLayout from './layouts/LoginLayout'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PropertyDetail from './pages/property-detail'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
       <LoginLayout>
         <RegisterPage />
       </LoginLayout>
+    ),
+  },
+  {
+    path: '/property/:id',
+    element: (
+      <MainLayout>
+        <PropertyDetail />
+      </MainLayout>
     ),
   },
 ]);
